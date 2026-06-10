@@ -53,3 +53,13 @@ Sorted -> ['b', 'd', 'e', 'h', 'k', 'm', 'n',
 =================================================
 
 """
+def print_palindromes(filename):
+    count = 0
+    with open(filename, "r") as f:
+        for word in f:
+            word = word.strip().lower()
+            if is_palindrome(word):
+                print(word)
+                count += 1
+    print("Total palindromes:", count)
+   
