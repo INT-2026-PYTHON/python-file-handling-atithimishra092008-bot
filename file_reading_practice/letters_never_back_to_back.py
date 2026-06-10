@@ -53,13 +53,23 @@ Sorted -> ['b', 'd', 'e', 'h', 'k', 'm', 'n',
 =================================================
 
 """
-def print_palindromes(filename):
-    count = 0
+def letters_never_doubled(filename):
+    seen = set()
+    doubled = set()
+
     with open(filename, "r") as f:
         for word in f:
             word = word.strip().lower()
-            if is_palindrome(word):
-                print(word)
-                count += 1
-    print("Total palindromes:", count)
-   
+            for i, ch in enumerate(word):
+                seen.add(ch)
+                if i > 0 and word[i] == word[i - 1]:
+                    doubled.add(ch)
+
+    result = sorted(seen - doubled)
+    return result
+
+
+letters = letters_never_doubled("sowpods.txt")
+print("Letters that never appear back-to-back:")
+print(letters)
+
